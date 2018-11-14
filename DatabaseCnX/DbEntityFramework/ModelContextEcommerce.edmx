@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ecommerceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ARTICLES">
+          <Key>
+            <PropertyRef Name="idarticle" />
+          </Key>
+          <Property Name="idarticle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="prix" Type="float" />
+          <Property Name="quantite" Type="int" Nullable="false" />
+          <Property Name="img" Type="varchar" MaxLength="20" />
+          <Property Name="categorienom" Type="varchar" MaxLength="20" />
+          <Property Name="datecreation" Type="date" />
+        </EntityType>
+        <EntityType Name="CATEGORIE">
+          <Key>
+            <PropertyRef Name="categorienom" />
+          </Key>
+          <Property Name="categorienom" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="datecreation" Type="date" />
+        </EntityType>
+        <EntityType Name="PROFIL">
+          <Key>
+            <PropertyRef Name="idprofil" />
+          </Key>
+          <Property Name="idprofil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="20" />
+          <Property Name="adresse" Type="varchar" MaxLength="50" />
+          <Property Name="ville" Type="varchar" MaxLength="20" />
+          <Property Name="pays" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="QUESTIONSECRET">
+          <Key>
+            <PropertyRef Name="idquestion" />
+          </Key>
+          <Property Name="idquestion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idquestion" Type="int" />
+          <Property Name="reponsesc" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_ArticlesCategorie">
+          <End Role="CATEGORIE" Type="Self.CATEGORIE" Multiplicity="0..1" />
+          <End Role="ARTICLES" Type="Self.ARTICLES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIE">
+              <PropertyRef Name="categorienom" />
+            </Principal>
+            <Dependent Role="ARTICLES">
+              <PropertyRef Name="categorienom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProfilUser">
+          <End Role="USERS" Type="Self.USERS" Multiplicity="0..1" />
+          <End Role="PROFIL" Type="Self.PROFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="PROFIL">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserQuestionSecret">
+          <End Role="QUESTIONSECRET" Type="Self.QUESTIONSECRET" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTIONSECRET">
+              <PropertyRef Name="idquestion" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="idquestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ecommerceModelStoreContainer">
+          <EntitySet Name="ARTICLES" EntityType="Self.ARTICLES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CATEGORIE" EntityType="Self.CATEGORIE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROFIL" EntityType="Self.PROFIL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QUESTIONSECRET" EntityType="Self.QUESTIONSECRET" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_ArticlesCategorie" Association="Self.fk_ArticlesCategorie">
+            <End Role="CATEGORIE" EntitySet="CATEGORIE" />
+            <End Role="ARTICLES" EntitySet="ARTICLES" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProfilUser" Association="Self.fk_ProfilUser">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PROFIL" EntitySet="PROFIL" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserQuestionSecret" Association="Self.fk_UserQuestionSecret">
+            <End Role="QUESTIONSECRET" EntitySet="QUESTIONSECRET" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ecommerceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ARTICLE">
+          <Key>
+            <PropertyRef Name="idarticle" />
+          </Key>
+          <Property Name="idarticle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="prix" Type="Double" />
+          <Property Name="quantite" Type="Int32" Nullable="false" />
+          <Property Name="img" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="categorienom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="datecreation" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CATEGORIE" Relationship="Self.fk_ArticlesCategorie" FromRole="ARTICLES" ToRole="CATEGORIE" />
+        </EntityType>
+        <EntityType Name="CATEGORIE">
+          <Key>
+            <PropertyRef Name="categorienom" />
+          </Key>
+          <Property Name="categorienom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="datecreation" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ARTICLES" Relationship="Self.fk_ArticlesCategorie" FromRole="CATEGORIE" ToRole="ARTICLES" />
+        </EntityType>
+        <EntityType Name="PROFIL">
+          <Key>
+            <PropertyRef Name="idprofil" />
+          </Key>
+          <Property Name="idprofil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="adresse" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ville" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="pays" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USER" Relationship="Self.fk_ProfilUser" FromRole="PROFIL" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="QUESTIONSECRET">
+          <Key>
+            <PropertyRef Name="idquestion" />
+          </Key>
+          <Property Name="idquestion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.fk_UserQuestionSecret" FromRole="QUESTIONSECRET" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="username" />
+          </Key>
+          <Property Name="username" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idquestion" Type="Int32" />
+          <Property Name="reponsesc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PROFILs" Relationship="Self.fk_ProfilUser" FromRole="USERS" ToRole="PROFIL" />
+          <NavigationProperty Name="QUESTIONSECRET" Relationship="Self.fk_UserQuestionSecret" FromRole="USERS" ToRole="QUESTIONSECRET" />
+        </EntityType>
+        <Association Name="fk_ArticlesCategorie">
+          <End Role="CATEGORIE" Type="Self.CATEGORIE" Multiplicity="0..1" />
+          <End Role="ARTICLES" Type="Self.ARTICLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIE">
+              <PropertyRef Name="categorienom" />
+            </Principal>
+            <Dependent Role="ARTICLES">
+              <PropertyRef Name="categorienom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ProfilUser">
+          <End Role="USERS" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="PROFIL" Type="Self.PROFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USERS">
+              <PropertyRef Name="username" />
+            </Principal>
+            <Dependent Role="PROFIL">
+              <PropertyRef Name="username" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_UserQuestionSecret">
+          <End Role="QUESTIONSECRET" Type="Self.QUESTIONSECRET" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QUESTIONSECRET">
+              <PropertyRef Name="idquestion" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="idquestion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ecommerceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ARTICLES" EntityType="Self.ARTICLE" />
+          <EntitySet Name="CATEGORIEs" EntityType="Self.CATEGORIE" />
+          <EntitySet Name="PROFILs" EntityType="Self.PROFIL" />
+          <EntitySet Name="QUESTIONSECRETs" EntityType="Self.QUESTIONSECRET" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <AssociationSet Name="fk_ArticlesCategorie" Association="Self.fk_ArticlesCategorie">
+            <End Role="CATEGORIE" EntitySet="CATEGORIEs" />
+            <End Role="ARTICLES" EntitySet="ARTICLES" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ProfilUser" Association="Self.fk_ProfilUser">
+            <End Role="USERS" EntitySet="USERS" />
+            <End Role="PROFIL" EntitySet="PROFILs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_UserQuestionSecret" Association="Self.fk_UserQuestionSecret">
+            <End Role="QUESTIONSECRET" EntitySet="QUESTIONSECRETs" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ecommerceModelStoreContainer" CdmEntityContainer="ecommerceEntities">
+          <EntitySetMapping Name="ARTICLES">
+            <EntityTypeMapping TypeName="ecommerceModel.ARTICLE">
+              <MappingFragment StoreEntitySet="ARTICLES">
+                <ScalarProperty Name="idarticle" ColumnName="idarticle" />
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="categorienom" ColumnName="categorienom" />
+                <ScalarProperty Name="datecreation" ColumnName="datecreation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIEs">
+            <EntityTypeMapping TypeName="ecommerceModel.CATEGORIE">
+              <MappingFragment StoreEntitySet="CATEGORIE">
+                <ScalarProperty Name="categorienom" ColumnName="categorienom" />
+                <ScalarProperty Name="datecreation" ColumnName="datecreation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFILs">
+            <EntityTypeMapping TypeName="ecommerceModel.PROFIL">
+              <MappingFragment StoreEntitySet="PROFIL">
+                <ScalarProperty Name="idprofil" ColumnName="idprofil" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="ville" ColumnName="ville" />
+                <ScalarProperty Name="pays" ColumnName="pays" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QUESTIONSECRETs">
+            <EntityTypeMapping TypeName="ecommerceModel.QUESTIONSECRET">
+              <MappingFragment StoreEntitySet="QUESTIONSECRET">
+                <ScalarProperty Name="idquestion" ColumnName="idquestion" />
+                <ScalarProperty Name="question" ColumnName="question" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="ecommerceModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="idquestion" ColumnName="idquestion" />
+                <ScalarProperty Name="reponsesc" ColumnName="reponsesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
