@@ -1,24 +1,118 @@
-﻿body {
-    padding-top: 50px;
+﻿.promotion {
+    background-color: lightseagreen;
+    width: 100%;
+    left: 0;
+    color: #003b64;
+    top: 0;
+    height: 35px;
+    padding-top: 10px;
+    font: bolder;
+    font-size: 13px;
+}
+
+
+.fixed {
+    top: 0 ;
+    z-index: 1 ;
+    position: fixed ;
+    left: 0 ;
+    text-align: center ;
+    font-size: 14px ;
+    font: bolder ;
+    padding-top: 10px ;
+}
+
+.nav-b {
+    height: 160px ;
+    width: 100% ;
+    padding-top: 10px ;
+    padding-left: 20px ;
+    color: white ;
+    background-color: #003b64 ;
+    font-size: 14px ;
+}
+
+body {
+    background-color: aliceblue !important ;
+}
+
+.others {
+    text-align:center;
+   
+    height: 100px;
+    padding-left: 35px;
+    padding-right: 35px ;
     padding-bottom: 20px;
+    margin-bottom: 8% ;
+    margin-top: 4% 
+    
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.imgslider {
+    height: 360px ;
+    border: 1px solid #ddd;
+    border-radius: 4px ;
+    padding: 5px ;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+
+#menu ul {
+    list-style: none;
+    position: absolute ;
+    float: left ;
+    padding-left: 220px ;
+    height: 200px ;
+    font-size: 13px ;
+    color: white 
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+
+#menu li {
+    float: left;
+    margin: auto ;
+    padding: 0 ;
+    color: white ;
+    height: 100px ;
+}
+
+    #menu li a {
+        width: 100px ;
+        color: white ;
+        text-decoration: none ;
+        padding: 5px ;
+    }
+
+        #menu li a:hover {
+            color: #0080c8 ;
+        }
+
+
+#menu ul ul {
+    display: none ;
+}
+
+#menu ul li:hover > ul {
+    position: absolute ;
+    height: 150px ;
+    width: 150px ;
+    margin-top: 2% ;
+    display: block;
+    padding-right: 1% ;
+    padding-left: 1% ;
+    border-top: 2px solid #0080c8 ;
+    background: white;
+    font-size: 12px;
+}
+
+#menu ul li ul a {
+    color: #0080c8 
+}
+
+#menu ul li .dropdown li {
+    color: #0080c8 ;
+    height: 20px ;
+}
+
+#menu ul li ul a:hover {
+    color: blueviolet 
 }

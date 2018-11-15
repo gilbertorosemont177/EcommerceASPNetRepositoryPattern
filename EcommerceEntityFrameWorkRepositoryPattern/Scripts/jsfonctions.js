@@ -6,15 +6,15 @@
         var scrollpos = $(window).scrollTop();
 
         if (scrollpos >= jum) {
-            $("nav").addClass("fixed")
+            $("nav").addClass("fixed");
         }
         else {
-            $("nav").removeClass("fixed")
+            $("nav").removeClass("fixed");
 
         }
 
 
-    })
+    });
 
 
 });
