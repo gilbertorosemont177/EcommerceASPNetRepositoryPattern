@@ -12,34 +12,29 @@ namespace DatabaseCnX.PersistanceData
 {
     public class UnityOfWork : IUnitOfWork
     {
-        private readonly ecommerceEntities _ecommercerContext;
-        public UnityOfWork(ecommerceEntities context)
+        private readonly ecommerceEntities _ecommercerContext= new ecommerceEntities();
+        
+      
+
+        public IArticleRepository articles => new ArticleRepository(_ecommercerContext);
+
+        public ICategorieRepository categorie => new CategoriesRepository(_ecommercerContext);
+
+        public IProfilRepository profil => new ProfilRepository(_ecommercerContext);
+
+        public IUserReposiroy user=> new UserRepository(_ecommercerContext);
+
+        public IQuestionSecrets questions => new QuestionSecretRepository(_ecommercerContext);
+
+        public void SaveChanges()
         {
-            _ecommercerContext = context;
-            articles = new ArticleRepository(_ecommercerContext);
-            categorie = new CategoriesRepository(_ecommercerContext);
-            profil = new ProfilRepository(_ecommercerContext);
-            user = new UserRepository(_ecommercerContext);
-            questions = new QuestionSecretRepository(_ecommercerContext);
-
+            _ecommercerContext.SaveChanges();
         }
-
-
-        public IArticleRepository articles { get; private set; }
-
-        public ICategorieRepository categorie { get; private set; }
-
-        public IProfilRepository profil { get; private set; }
-
-        public IUserReposiroy user { get; private set; }
-
-        public IQuestionSecrets questions { get; private set; }
-
-
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _ecommercerContext.Dispose();
+            
         }
     }
 }

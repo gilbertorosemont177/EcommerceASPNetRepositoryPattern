@@ -99,6 +99,7 @@
     <Compile Include="PersistanceData\RepositoriesModels\QuestionSecretRepository.cs" />
     <Compile Include="PersistanceData\RepositoriesModels\Repository.cs" />
     <Compile Include="PersistanceData\RepositoriesModels\UserRepository.cs" />
+    <Compile Include="PersistanceData\RepositoryData\ConnexionRepositories.cs" />
     <Compile Include="PersistanceData\UnityOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
