@@ -20,6 +20,8 @@ namespace DatabaseCnX.DbEntityFramework
         public string img { get; set; }
         public string categorienom { get; set; }
         public Nullable<System.DateTime> datecreation { get; set; }
+        public string marque { get; set; }
+        public string model { get; set; }
     
         public virtual CATEGORIE CATEGORIE { get; set; }
     }

@@ -15,6 +15,8 @@
           <Property Name="img" Type="varchar" MaxLength="20" />
           <Property Name="categorienom" Type="varchar" MaxLength="20" />
           <Property Name="datecreation" Type="date" />
+          <Property Name="marque" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="model" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CATEGORIE">
           <Key>
@@ -119,6 +121,8 @@
           <Property Name="categorienom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="datecreation" Type="DateTime" Precision="0" />
           <NavigationProperty Name="CATEGORIE" Relationship="Self.fk_ArticlesCategorie" FromRole="ARTICLES" ToRole="CATEGORIE" />
+          <Property Name="marque" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="CATEGORIE">
           <Key>
@@ -222,6 +226,8 @@
           <EntitySetMapping Name="ARTICLES">
             <EntityTypeMapping TypeName="ecommerceModel.ARTICLE">
               <MappingFragment StoreEntitySet="ARTICLES">
+                <ScalarProperty Name="model" ColumnName="model" />
+                <ScalarProperty Name="marque" ColumnName="marque" />
                 <ScalarProperty Name="idarticle" ColumnName="idarticle" />
                 <ScalarProperty Name="prix" ColumnName="prix" />
                 <ScalarProperty Name="quantite" ColumnName="quantite" />
