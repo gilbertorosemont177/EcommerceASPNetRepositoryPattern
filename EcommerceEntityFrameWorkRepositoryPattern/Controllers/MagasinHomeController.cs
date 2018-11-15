@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DatabaseCnX.PersistanceData.RepositoryData;
+using EcommerceEntityFrameWorkRepositoryPattern.Models;
+
 
 namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
 {
@@ -12,8 +14,20 @@ namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
         // GET: MagasinHome
         public ActionResult Index()
         {
-            var listeArticles = ConnexionRepositories.GetConnexionRepositories().articles.GetAll();
-            return View();
+            var listecategories = ConnexionRepositories.GetConnexionRepositories().categorie.GetAll().ToList();
+            //var listeviwmodel = new ViewModelsArticlesCategories
+            //{
+            //    categorieMagasin = listecategories,
+            //    articlesMagasin = null
+
+            //};
+           
+            return View(listecategories);
         }
+        //public ActionResult Index(string c)
+        //{
+
+        //    return View("Index",)
+        //}
     }
 }

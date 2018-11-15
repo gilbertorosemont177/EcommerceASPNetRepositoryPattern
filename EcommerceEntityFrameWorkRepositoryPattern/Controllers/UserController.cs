@@ -16,8 +16,9 @@ namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
         public ActionResult Index()
         {
             var question = ConnexionRepositories.GetConnexionRepositories().questions.Get(7);
+
        
-            return View();
+            return View(question);
         }
     }
 }

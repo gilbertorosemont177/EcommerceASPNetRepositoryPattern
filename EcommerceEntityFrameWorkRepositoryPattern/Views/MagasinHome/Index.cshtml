@@ -1,4 +1,6 @@
-﻿
+﻿@* @model EcommerceEntityFrameWorkRepositoryPattern.Models.ViewModelsArticlesCategories*@
+@model IList<DatabaseCnX.DbEntityFramework.CATEGORIE>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -31,8 +33,30 @@
 </div>
 <!-- end carousel  -->
 
+<div class="row mt-4">
+    <div class="col-sm-3">
+
+       
+    </div>
+    <div class="col-sm-3">
+
+        @Html.DropDownList("test", new SelectList(Model, "datecreation", "categorienom"), new { @class = "form-control" })
+    </div>
+    <div class="col-sm-3">
+
+        <button class="btn btn-primary"> chercher </button>
+    </div>
+    <div class="col-sm-3">
+
+        
+    </div>
+    
+
+
+</div>
+
 <div class="others ">
-    <img class="border img-fluid"  src="https://images.bbycastatic.ca/sf/projects/_content/_categories/computing/_banners/2018/2018-10/new-mb-pc-bar/assets/macbookair-pc-bar.png" alt="">
+    <img class="border img-fluid" src="https://images.bbycastatic.ca/sf/projects/_content/_categories/computing/_banners/2018/2018-10/new-mb-pc-bar/assets/macbookair-pc-bar.png" alt="">
 
 </div>
 
