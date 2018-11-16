@@ -14,5 +14,13 @@ namespace DatabaseCnX.PersistanceData.RepositoriesModels
         public ArticleRepository(DbContext dbc) : base(dbc)
         {
         }
+
+        
+
+        public List<ARTICLE> getALLArticlesbyCategorie(string ctgrnom)
+        {
+            var liste = this.Context.Set<ARTICLE>().Where(ctg => ctg.categorienom == ctgrnom).ToList();
+            return liste;
+        }
     }
 }

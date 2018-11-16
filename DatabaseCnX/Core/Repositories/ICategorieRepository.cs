@@ -10,4 +10,8 @@ namespace DatabaseCnX.Core.Repositories
     public interface ICategorieRepository : IRepository<CATEGORIE>
     {
     }
+
+    // USER getUserWithourRepositoryInterface(int id);
+
+    
 }

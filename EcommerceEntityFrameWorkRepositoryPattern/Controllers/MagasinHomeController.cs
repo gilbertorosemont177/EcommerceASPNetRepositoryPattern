@@ -15,19 +15,28 @@ namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
         public ActionResult Index()
         {
             var listecategories = ConnexionRepositories.GetConnexionRepositories().categorie.GetAll().ToList();
-            //var listeviwmodel = new ViewModelsArticlesCategories
-            //{
-            //    categorieMagasin = listecategories,
-            //    articlesMagasin = null
+            var listeviewmodel = new ViewModelsArticlesCategories
+            {
+               categorieMagasin = listecategories,
+               articlesMagasin = null
 
-            //};
+            };
            
-            return View(listecategories);
+            return View(listeviewmodel);
         }
-        //public ActionResult Index(string c)
-        //{
+        [HttpPost]
+        public ActionResult Index(string categorienom)
+        {
+            var listearticlesbycategories = ConnexionRepositories.GetConnexionRepositories().articles.getALLArticlesbyCategorie(categorienom);
+            var listecategories = ConnexionRepositories.GetConnexionRepositories().categorie.GetAll().ToList();
 
-        //    return View("Index",)
-        //}
+            var listeviewmodel = new ViewModelsArticlesCategories
+            {
+                categorieMagasin = listecategories,
+                articlesMagasin = listearticlesbycategories
+        };
+            var gt = listeviewmodel;
+            return View("Index",listeviewmodel);
+        }
     }
 }

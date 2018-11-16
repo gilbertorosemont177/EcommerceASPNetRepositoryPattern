@@ -10,6 +10,8 @@ namespace DatabaseCnX.Core.Repositories
    public interface IArticleRepository : IRepository<ARTICLE> 
     {
 
-
+        List<ARTICLE> getALLArticlesbyCategorie(string ctgrnom);
     }
+
+   
 }

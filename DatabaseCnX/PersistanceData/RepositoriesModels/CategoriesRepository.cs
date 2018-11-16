@@ -14,5 +14,6 @@ namespace DatabaseCnX.PersistanceData.RepositoriesModels
         public CategoriesRepository(DbContext dbc) : base(dbc)
         {
         }
+        
     }
 }
