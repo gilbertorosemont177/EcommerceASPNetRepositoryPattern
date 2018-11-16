@@ -15,10 +15,11 @@ namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
         public ActionResult Index()
         {
             var listecategories = ConnexionRepositories.GetConnexionRepositories().categorie.GetAll().ToList();
+            var listeproduitscomplete = ConnexionRepositories.GetConnexionRepositories().articles.GetAll().ToList();
             var listeviewmodel = new ViewModelsArticlesCategories
             {
                categorieMagasin = listecategories,
-               articlesMagasin = null
+               articlesMagasin = listeproduitscomplete,
 
             };
            
@@ -26,7 +27,12 @@ namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
         }
         [HttpPost]
         public ActionResult Index(string categorienom)
+
         {
+            if (categorienom.Equals(""))
+            {
+                return RedirectToAction("Index", "MagasinHome");
+            }
             var listearticlesbycategories = ConnexionRepositories.GetConnexionRepositories().articles.getALLArticlesbyCategorie(categorienom);
             var listecategories = ConnexionRepositories.GetConnexionRepositories().categorie.GetAll().ToList();
 
@@ -34,7 +40,7 @@ namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
             {
                 categorieMagasin = listecategories,
                 articlesMagasin = listearticlesbycategories
-        };
+            };
             var gt = listeviewmodel;
             return View("Index",listeviewmodel);
         }
