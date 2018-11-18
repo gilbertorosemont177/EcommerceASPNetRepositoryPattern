@@ -13,7 +13,7 @@
           <Property Name="prix" Type="float" />
           <Property Name="quantite" Type="int" Nullable="false" />
           <Property Name="img" Type="varchar" MaxLength="20" />
-          <Property Name="categorienom" Type="varchar" MaxLength="20" />
+          <Property Name="categorienom" Type="varchar" MaxLength="250" />
           <Property Name="datecreation" Type="date" />
           <Property Name="marque" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="model" Type="varchar" MaxLength="50" />
@@ -22,8 +22,9 @@
           <Key>
             <PropertyRef Name="categorienom" />
           </Key>
-          <Property Name="categorienom" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="categorienom" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="datecreation" Type="date" />
+          <Property Name="imgctg" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="PROFIL">
           <Key>
@@ -51,7 +52,7 @@
           <Property Name="idquestion" Type="int" />
           <Property Name="reponsesc" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
-        <Association Name="fk_ArticlesCategorie">
+        <Association Name="FK_ArticlesCategorie">
           <End Role="CATEGORIE" Type="Self.CATEGORIE" Multiplicity="0..1" />
           <End Role="ARTICLES" Type="Self.ARTICLES" Multiplicity="*" />
           <ReferentialConstraint>
@@ -93,7 +94,7 @@
           <EntitySet Name="PROFIL" EntityType="Self.PROFIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QUESTIONSECRET" EntityType="Self.QUESTIONSECRET" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="fk_ArticlesCategorie" Association="Self.fk_ArticlesCategorie">
+          <AssociationSet Name="FK_ArticlesCategorie" Association="Self.FK_ArticlesCategorie">
             <End Role="CATEGORIE" EntitySet="CATEGORIE" />
             <End Role="ARTICLES" EntitySet="ARTICLES" />
           </AssociationSet>
@@ -118,7 +119,7 @@
           <Property Name="prix" Type="Double" />
           <Property Name="quantite" Type="Int32" Nullable="false" />
           <Property Name="img" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="categorienom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="categorienom" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="datecreation" Type="DateTime" Precision="0" />
           <NavigationProperty Name="CATEGORIE" Relationship="Self.fk_ArticlesCategorie" FromRole="ARTICLES" ToRole="CATEGORIE" />
           <Property Name="marque" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -128,9 +129,10 @@
           <Key>
             <PropertyRef Name="categorienom" />
           </Key>
-          <Property Name="categorienom" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="categorienom" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="datecreation" Type="DateTime" Precision="0" />
           <NavigationProperty Name="ARTICLES" Relationship="Self.fk_ArticlesCategorie" FromRole="CATEGORIE" ToRole="ARTICLES" />
+          <Property Name="imgctg" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PROFIL">
           <Key>
@@ -240,6 +242,7 @@
           <EntitySetMapping Name="CATEGORIEs">
             <EntityTypeMapping TypeName="ecommerceModel.CATEGORIE">
               <MappingFragment StoreEntitySet="CATEGORIE">
+                <ScalarProperty Name="imgctg" ColumnName="imgctg" />
                 <ScalarProperty Name="categorienom" ColumnName="categorienom" />
                 <ScalarProperty Name="datecreation" ColumnName="datecreation" />
               </MappingFragment>

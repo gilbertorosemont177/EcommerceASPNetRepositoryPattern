@@ -22,6 +22,7 @@ namespace DatabaseCnX.DbEntityFramework
     
         public string categorienom { get; set; }
         public Nullable<System.DateTime> datecreation { get; set; }
+        public string imgctg { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ARTICLE> ARTICLES { get; set; }

@@ -173,3 +173,18 @@ ul, ol {
     visibility: hidden;
     transition: .22s ease;
 }
+.navbar {
+   
+       
+    height: 10% !important;
+}
+bg-dark {
+    background-color: #2d3246!important;
+}
+
+.card :hover {
+    
+    opacity: 0.5!important;
+    cursor: pointer;
+    
+}
