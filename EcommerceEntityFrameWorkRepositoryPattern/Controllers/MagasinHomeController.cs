@@ -44,5 +44,21 @@ namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
             var gt = listeviewmodel;
             return View("Index",listeviewmodel);
         }
+
+      
+        public ActionResult articlesbycategory(string nom)
+        {
+            var listearticlesbycategories = ConnexionRepositories.GetConnexionRepositories().articles.getALLArticlesbyCategorie(nom);
+            
+            var listeviewmodel = new ViewModelsArticlesCategories
+            {
+                
+                articlesMagasin = listearticlesbycategories
+            };
+            var gt = listeviewmodel;
+            return View( listeviewmodel);
+
+            
+        }
     }
 }

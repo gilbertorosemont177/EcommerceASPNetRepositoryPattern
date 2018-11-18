@@ -20,5 +20,9 @@ namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
        
             return View(question);
         }
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }

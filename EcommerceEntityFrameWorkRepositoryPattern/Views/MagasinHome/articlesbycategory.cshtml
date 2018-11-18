@@ -1,0 +1,32 @@
+﻿@model EcommerceEntityFrameWorkRepositoryPattern.Models.ViewModelsArticlesCategories
+@{
+                /**/
+
+                ViewBag.Title = "articlesbycategory";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (Model.articlesMagasin != null)
+{
+    <div class="row mt-3 mb-3">
+        @foreach (var item in Model.articlesMagasin)
+
+        {
+
+            <div class="col-sm-4 mt-4 mb-4">
+
+                <div class="card">
+                    <img class="catd-img-top img-fluid " src="~/imgs/@item.img" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"> @item.img</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <a href="#" class="btn btn-primary">Ajouter au panier</a>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+    </div>
+
+}
+

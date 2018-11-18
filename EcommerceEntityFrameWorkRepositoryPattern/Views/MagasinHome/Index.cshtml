@@ -14,7 +14,7 @@
     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="imgslider" src="https://images.bbycastatic.ca/sf/projects/mth/2018/global/main-feature-hero/assets/2018-11/11-09/mainfeature-bg.jpg" alt="First slide">
+                <img class="imgslider" src="https://images.bbycastatic.ca/sf/projects/_content/_weekly/2017/home/main-feature-slide-3/assets/2017-10/10-20/main-feature-geeksquad.jpg"  alt="First slide">
             </div>
             <div class="carousel-item">
                 <img class="imgslider" src="https://images.bbycastatic.ca/sf/projects/_content/_weekly/2017/home/main-feature-slide-3/assets/2017-10/10-20/main-feature-geeksquad.jpg" alt="Second slide">
@@ -71,12 +71,14 @@
             <div class="col-sm-3 mt-4 mb-4">
 
                 <div class="card">
-                    <img class="catd-img-top img-fluid " src="~/imgs/@item.imgctg" alt="Card image cap">
-                    <div class="card-body">
- 
-                    </div>
-                </div>
+                    <a href='@Url.Action("articlesbycategory", "MagasinHome",new { nom = @item.categorienom })'>
+                        
+                        <img class="catd-img-top img-fluid" src="~/imgs/@item.imgctg" alt="Card image cap">
+                        </a>
 
+                </div>
+                    <h3 class="titre-ctg"> @item.categorienom  </h3>
+               
             </div>
 
         }
