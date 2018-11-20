@@ -22,5 +22,31 @@ namespace DatabaseCnX.PersistanceData.RepositoriesModels
             var liste = this.Context.Set<ARTICLE>().Where(ctg => ctg.categorienom == ctgrnom).ToList();
             return liste;
         }
+        public List<ARTICLE> getItemsbyName(string item) {
+            var context = this.Context as ecommerceEntities;
+          
+            var collectionitems = context.SelectAllProduitsbyModel(item).ToList() ;
+            List<ARTICLE> collectionArticles = new List<ARTICLE>();
+            if (collectionitems.Count > 0)
+            {
+                foreach (var items in collectionitems)
+                {
+                    ARTICLE article = new ARTICLE();
+                    article.idarticle = items.idarticle;
+                    article.prix = items.prix;
+                    article.quantite = items.quantite;
+                    article.img = items.img;
+                    article.categorienom = items.categorienom;
+                    article.datecreation = items.datecreation;
+                    article.marque = items.marque;
+                    article.model = items.model;
+                    collectionArticles.Add(article);
+
+                }
+                
+            }
+
+            return collectionArticles ;
+        }
     }
 }

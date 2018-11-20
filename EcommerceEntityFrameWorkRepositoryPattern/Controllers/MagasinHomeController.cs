@@ -60,5 +60,15 @@ namespace EcommerceEntityFrameWorkRepositoryPattern.Controllers
 
             
         }
+        public ActionResult searcharticle(string nomarticle)
+        {
+            var liste = ConnexionRepositories.GetConnexionRepositories().articles.getItemsbyName(nomarticle);
+            ViewBag.itemnom = nomarticle;
+            var viewmodel = new ViewModelsArticlesCategories
+            {
+                articlesMagasin = liste
+            };
+            return View(viewmodel);
+        }
     }
 }

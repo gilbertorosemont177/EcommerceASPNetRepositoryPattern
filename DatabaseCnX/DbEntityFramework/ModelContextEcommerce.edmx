@@ -88,6 +88,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SelectAllProduitsbyModel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="model" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="ecommerceModelStoreContainer">
           <EntitySet Name="ARTICLES" EntityType="Self.ARTICLES" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORIE" EntityType="Self.CATEGORIE" Schema="dbo" store:Type="Tables" />
@@ -218,7 +221,20 @@
             <End Role="QUESTIONSECRET" EntitySet="QUESTIONSECRETs" />
             <End Role="USERS" EntitySet="USERS" />
           </AssociationSet>
+          <FunctionImport Name="SelectAllProduitsbyModel" ReturnType="Collection(ecommerceModel.SelectAllProduitsbyModel_Result)">
+            <Parameter Name="model" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="SelectAllProduitsbyModel_Result">
+          <Property Type="Int32" Name="idarticle" Nullable="false" />
+          <Property Type="Double" Name="prix" Nullable="true" />
+          <Property Type="Int32" Name="quantite" Nullable="false" />
+          <Property Type="String" Name="img" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="categorienom" Nullable="true" MaxLength="250" />
+          <Property Type="DateTime" Name="datecreation" Nullable="true" />
+          <Property Type="String" Name="marque" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="model" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -277,6 +293,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SelectAllProduitsbyModel" FunctionName="ecommerceModel.Store.SelectAllProduitsbyModel">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ecommerceModel.SelectAllProduitsbyModel_Result">
+                <ScalarProperty Name="idarticle" ColumnName="idarticle" />
+                <ScalarProperty Name="prix" ColumnName="prix" />
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="categorienom" ColumnName="categorienom" />
+                <ScalarProperty Name="datecreation" ColumnName="datecreation" />
+                <ScalarProperty Name="marque" ColumnName="marque" />
+                <ScalarProperty Name="model" ColumnName="model" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

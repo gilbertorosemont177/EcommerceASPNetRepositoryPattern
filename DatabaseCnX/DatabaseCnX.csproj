@@ -90,6 +90,9 @@
     <Compile Include="DbEntityFramework\QUESTIONSECRET.cs">
       <DependentUpon>ModelContextEcommerce.tt</DependentUpon>
     </Compile>
+    <Compile Include="DbEntityFramework\SelectAllProduitsbyModel_Result.cs">
+      <DependentUpon>ModelContextEcommerce.tt</DependentUpon>
+    </Compile>
     <Compile Include="DbEntityFramework\USER.cs">
       <DependentUpon>ModelContextEcommerce.tt</DependentUpon>
     </Compile>

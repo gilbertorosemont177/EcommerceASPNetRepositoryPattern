@@ -1,11 +1,25 @@
 ﻿@model EcommerceEntityFrameWorkRepositoryPattern.Models.ViewModelsArticlesCategories
 @{
-                /**/
-
-                ViewBag.Title = "articlesbycategory";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "searcharticle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@if (Model.articlesMagasin != null)
+<div class="mt-3 mb-3">
+
+    <h2>Mot clé recherché : @ViewBag.itemnom</h1>
+</div>
+@if (Model.articlesMagasin.Count() == 0)
+{
+
+    <div class="row ">
+        <div class="col-sm-12">
+
+            <h1>Aucun item trouvé</h1>
+        </div>
+        
+    </div>
+}
+
+@if (Model.articlesMagasin != null || Model.articlesMagasin.Count()>0)
 {
     <div class="row mt-3 mb-3">
         @foreach (var item in Model.articlesMagasin)

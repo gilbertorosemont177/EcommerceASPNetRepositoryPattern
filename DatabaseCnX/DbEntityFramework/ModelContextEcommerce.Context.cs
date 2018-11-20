@@ -12,6 +12,8 @@ namespace DatabaseCnX.DbEntityFramework
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class ecommerceEntities : DbContext
     {
@@ -30,5 +32,14 @@ namespace DatabaseCnX.DbEntityFramework
         public virtual DbSet<PROFIL> PROFILs { get; set; }
         public virtual DbSet<QUESTIONSECRET> QUESTIONSECRETs { get; set; }
         public virtual DbSet<USER> USERS { get; set; }
+    
+        public virtual ObjectResult<SelectAllProduitsbyModel_Result> SelectAllProduitsbyModel(string model)
+        {
+            var modelParameter = model != null ?
+                new ObjectParameter("model", model) :
+                new ObjectParameter("model", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SelectAllProduitsbyModel_Result>("SelectAllProduitsbyModel", modelParameter);
+        }
     }
 }

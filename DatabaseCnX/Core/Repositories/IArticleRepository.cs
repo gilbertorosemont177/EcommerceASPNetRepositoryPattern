@@ -11,6 +11,7 @@ namespace DatabaseCnX.Core.Repositories
     {
 
         List<ARTICLE> getALLArticlesbyCategorie(string ctgrnom);
+        List<ARTICLE> getItemsbyName(string item);
     }
 
    
